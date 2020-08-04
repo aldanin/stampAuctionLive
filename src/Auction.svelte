@@ -5,7 +5,7 @@
   import { exhibitsArray } from "./BL/exhibitsArray";
   import type { AuctionStoreModel } from "./BL/auctionStore";
   import auctionStore from "./BL/auctionStore";
-  import Crazy from "./Crazy.svelte";
+  import Crazy from './Crazy.svelte';
 
   let exhibits: ExhibitModel[] = exhibitsArray;
   let unsubscribe;
@@ -22,7 +22,8 @@
     const bid: Bid = event.detail;
     console.log("auction", event);
 
-    auctionStore.updateBid(bid);
+    auctionStore.updateBid(bid); 
+    
   }
 </script>
 
@@ -39,9 +40,7 @@
 <div class="auction-wrap">
   {#each exhibits as exhibit}
     <div class="exhibit-wrap">
-      <Crazy goCrazy={true}>
-        <Exhibit {exhibit} on:bidSubmitted={onBidSubmitted} />
-      </Crazy>
+      <Crazy goCrazy={exhibit.isSold}><Exhibit {exhibit} on:bidSubmitted={onBidSubmitted} /></Crazy>
     </div>
   {/each}
 </div>
